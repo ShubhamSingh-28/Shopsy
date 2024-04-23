@@ -2,10 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 //https://dummyjson.com/products?limit=100
 
-export const fetchcatagory = createAsyncThunk('fetchProducts',async({skip})=>{
+export const fetchcatagory = createAsyncThunk('fetchProducts',async()=>{
     try {
-        const response = await fetch(`https://dummyjson.com/`)
-        console.log(typeof skip);
+        const response = await fetch(`https://dummyjson.com/products/categories`)
         const data = response.json();
         return data;
     } catch (error) {
