@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-const ConnectDb = async () =>{
+export const ConnectDb = async () =>{
     try {
-        await mongoose.connect(process.env.MONGO_URI);
+        await mongoose.connect(`mongodb+srv://Auth:qwerty2801@next-auth.p0ecaww.mongodb.net/Ecomm`);
         console.log("Database connected");
         
     } catch (error) {
         console.log(error);
-    
+    }
 }
