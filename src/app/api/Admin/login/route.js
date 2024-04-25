@@ -10,7 +10,7 @@ export async function POST(req) {
       await ConnectDb();
       const {  email, password } = await req.json();
       const checkUser  = await adminAccountsModel.findOne({ email });
-      console.log(checkUser);
+      //console.log(checkUser);
         
         if (!checkUser) {
           return NextResponse.json({
@@ -36,7 +36,6 @@ export async function POST(req) {
         };
     
         return NextResponse.json({
-          token,
           success: true,
           message: "Login successfull!",
           finalData
