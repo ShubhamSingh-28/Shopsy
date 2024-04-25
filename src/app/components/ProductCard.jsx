@@ -2,6 +2,7 @@ import Link from "next/link";
 
 
 export default function ProductCard({ items }) {
+  //console.log(items);
   if (!items || items.length === 0) {
     return (<div><div className="flex flex-col gap-4 w-52">
     <div className="skeleton h-32 w-full"></div>
@@ -16,16 +17,16 @@ export default function ProductCard({ items }) {
 
   return (
     <div>
-      {items.map((item, index) => (
-        <div key={index} className="w-80 bg-white shadow rounded-xl">
-          <div className="h-48 w-full bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center rounded-xl" style={{backgroundImage: `url(${item.thumbnail})`}}>
+      
+        <div  className="w-80 bg-white shadow rounded-xl">
+          <div className="h-48 w-full bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center rounded-xl" style={{backgroundImage: `url(${items?.[0].thumbnail})`}}>
           </div>
           <div className="p-4 flex flex-col items-center">
-            <p className="text-gray-400 font-light text-xs text-center">{item.brand}</p>
-            <h1 className="text-gray-800 text-center mt-1">{item.name}</h1>
-            <p className="text-center text-gray-800 mt-1">rs{item.price}</p>
+            <p className="text-gray-400 font-light text-xs text-center">{items?.[0].brand}</p>
+            <h1 className="text-gray-800 text-center mt-1">{items?.[0].name}</h1>
+            <p className="text-center text-gray-800 mt-1">rs{items?.[0].price}</p>
            
-            <Link href={`/products/${item.id}`}>
+            <Link href={`/products/${items?.[0].id}`}>
               <button className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 mt-4 w-full flex items-center justify-center">
                 Add to order
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,7 +36,6 @@ export default function ProductCard({ items }) {
             </Link>
           </div>
         </div>
-      ))}
 
     </div>
   );

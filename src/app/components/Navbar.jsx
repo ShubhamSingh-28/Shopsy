@@ -7,13 +7,13 @@ export default function Navbar() {
 
  
   return (
-    <div className="navbar md:px-8 border border-gray-200 cursor-pointer ">
+    <div className="navbar md:px-8  border-gray-200 cursor-pointer py-4 ">
   <div className=" navbar-start flex-1">
-    <a className="btn btn-ghost text-2xl">Shopsy</a>
+    <a className="btn btn-ghost text-3xl font-bold bg-orange-600 rounded-2xl">Shopsy</a>
   </div>
-  <div className="navbar-center hidden lg:flex">
-  <input className="rounded-l-full text-center bg-white border border-gray-200 py-1 " type="text"  placeholder="Search" />
-          <div className=" text-white py-[5px] px-4 bg-red-600 hover:opacity-50 rounded-r-full">
+  <div className=" hidden lg:flex relative left-48 border-[1px] border-gray-600 rounded-full">
+  <input className="rounded-l-full text-center  font-semibold bg-white border w-72 border-gray-200 py-3 " type="text"  placeholder="Search...." />
+          <div className=" text-white py-[13px] px-6 bg-red-600 hover:opacity-50 rounded-r-full">
           <Search/>
           </div>
   </div>
