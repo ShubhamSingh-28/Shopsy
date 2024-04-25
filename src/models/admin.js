@@ -15,10 +15,6 @@ const adminSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
-    // auth_id: {
-    //   type: String,
-    // },
   },
   {
     timestamps: true,

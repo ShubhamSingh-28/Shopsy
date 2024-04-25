@@ -2,13 +2,14 @@ import { ConnectDb } from "@/config/db"
 import product from "@/models/product";
 import { NextResponse } from "next/server"
 
+export const dynamic = "force-dynamic";
 
 
 export const POST =async(req)=>{
     try {
        await ConnectDb();
-        const { product_name, product_price, product_image, product_detail} = await req.json();
-        if (!product_image || !product_name || !product_price || !product_detail) {
+        const { product_name, product_price, product_image, product_detail,category, Stock} = await req.json();
+        if (!product_image || !product_name || !product_price || !product_detail || !Stock ||!category) {
             return new NextResponse(
                 "Please fill all the fields",
                { status:400
@@ -19,7 +20,9 @@ export const POST =async(req)=>{
             product_name,
             product_price,
             product_image,
-            product_detail
+            product_detail,
+            category,
+            Stock
         });
              await newProduct.save();
         return  NextResponse.json(

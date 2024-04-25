@@ -19,6 +19,15 @@ const productSchema = new Schema({
     product_detail: {
       type: String,
     },
+    category: {
+      type: String,
+      required: [true, "Please Enter Product Category"],
+    },
+    Stock: {
+      type: Number,
+      required: [true, "Please Enter product Stock"],
+      default: 1,
+    },
   },{
     timestamps: true
 })

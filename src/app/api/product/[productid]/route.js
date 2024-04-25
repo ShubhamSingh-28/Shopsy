@@ -2,6 +2,9 @@ import { ConnectDb } from "@/config/db";
 import { NextResponse } from "next/server";
 import product from "@/models/product";
 
+export const dynamic = "force-dynamic";
+
+
 export const GET=async(req,{params})=>{
     try {
         const param = params;
@@ -38,7 +41,7 @@ export const PUT=async(req,{params})=>{
     try {
         const param = params;
         ConnectDb();
-        const { product_name, product_price, product_image, product_detail} = await req.json();
+        const { product_name, product_price, product_image, product_detail,category,Stock} = await req.json();
         const products = await product.findById(param.productid);
         if (!products) {
             return new NextResponse(JSON.stringify({message: "product not found"}),{status:400})
@@ -48,7 +51,9 @@ export const PUT=async(req,{params})=>{
             product_name,
             product_price,
             product_image,
-            product_detail
+            product_detail,
+            Stock,
+            category
         })
         await updateProduct.save()
         
