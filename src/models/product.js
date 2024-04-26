@@ -23,11 +23,20 @@ const productSchema = new Schema({
       type: String,
       required: [true, "Please Enter Product Category"],
     },
+    brand:{
+      type: String,
+      required: [true, "Please Enter Product Brand"],
+    },
     Stock: {
-      type: Number,
+      type: String,
       required: [true, "Please Enter product Stock"],
       default: 1,
     },
+    rating:{
+      type: String,
+      required: [true, "Please Enter product Rating"],
+      default: 0,
+    }
   },{
     timestamps: true
 })

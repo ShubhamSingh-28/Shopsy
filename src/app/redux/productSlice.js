@@ -1,11 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-//https://dummyjson.com/products?limit=100
 
-export const fetchProducts = createAsyncThunk('fetchProducts',async({skip})=>{
+export const fetchProducts = createAsyncThunk('fetchProducts',async()=>{
     try {
-        const response = await fetch(`https://dummyjson.com/products?limit=12&skip=${skip}`)
-        //console.log(typeof skip);
+        const response = await fetch(`/api/product`)     
         const data = response.json();
         return data;
     } catch (error) {
@@ -14,8 +12,7 @@ export const fetchProducts = createAsyncThunk('fetchProducts',async({skip})=>{
 })
 export const fetchProductsById = createAsyncThunk('fetchProductsById',async({id})=>{
     try {
-        const response = await fetch(`https://dummyjson.com/products/${id}`)
-        //console.log(typeof skip);
+        const response = await fetch(`/api/product/${id}`)
         const data = response.json();
         return data;
     } catch (error) {

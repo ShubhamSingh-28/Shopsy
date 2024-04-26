@@ -8,8 +8,8 @@ export const dynamic = "force-dynamic";
 export const POST =async(req)=>{
     try {
        await ConnectDb();
-        const { product_name, product_price, product_image, product_detail,category, Stock} = await req.json();
-        if (!product_image || !product_name || !product_price || !product_detail || !Stock ||!category) {
+        const { product_name, product_price, product_image, product_detail,category, Stock,brand,rating} = await req.json();
+        if (!product_image || !product_name || !product_price || !product_detail || !Stock ||!category ||!brand ||!rating) {
             return new NextResponse(
                 "Please fill all the fields",
                { status:400
@@ -21,6 +21,8 @@ export const POST =async(req)=>{
             product_price,
             product_image,
             product_detail,
+            brand,
+            rating,
             category,
             Stock
         });

@@ -11,52 +11,28 @@ import { useEffect, useState } from "react";
 import { fetchProducts } from "./redux/productSlice";
 import ProductCard from "./components/ProductCard";
 
-import Link from "next/link";
-import Category from "./components/Category";
-import { fetchcatagory } from "./redux/categorySlice";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+//import { fetchcatagory } from "./redux/categorySlice";
 
 export default function Home() {
   const [data, setData] = useState([]);
-  const [category, setCategory] = useState([]);
+ // const [category, setCategory] = useState([]);
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  const [skip, setSkip] = useState(0);
-
-  const handleNext = () => {
-    setPage(page + 1);
-    setSkip(skip + 12);
-  };
-
-  const handleBack = () => {
-    setPage(page - 1);
-    if (skip <= 0) {
-      return;
-    }
-    setSkip(skip - 12);
-  };
 
   useEffect(() => {
-    dispatch(fetchProducts({ skip }))
+    dispatch(fetchProducts())
       .then((result) => {
         setData(result.payload);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [dispatch, skip]);
-
-  useEffect(() => {
-    dispatch(fetchcatagory())
-      .then((result) => {
-        setCategory(result.payload);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }, [dispatch]);
 
-  //console.log(category);
+  
 
+ 
   if (data.length < 1) {
     return(
       <>
@@ -95,30 +71,30 @@ export default function Home() {
   }
   return (
     
-      <div className=" bg-slate-400">
+      <div className="">
         <Navbar />
         <Banner />
-        <h2 className="px-20 py-6 text-3xl font-bold">Category</h2>
-        <Category data2={category} />
         <h2 className="px-20 py-6 text-3xl font-bold">All Products</h2>
         <div className="my-4 grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-x-3 mx-8 lg:mx-24 gap-y-6">
-          {data.products.map((product, index) => (
+            { data.slice(page * 12 -12, page*12).map((product, index) => (
             <ProductCard key={index} items={[product]} />
-          ))}
+          ))  }
         </div>
         <div className="flex justify-center gap-5">
-          <Link onClick={handleBack} href="/" className="inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
-            </svg>
-            <span className="ml-1 font-bold text-lg">Back</span>
-          </Link>
-          <Link onClick={handleNext} href="#" className="inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50">
+        {page <= 1 ? (
+  <div  className="inline-flex items-center cursor-pointer border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50">
+    <ArrowLeft />
+    <span className="ml-1 font-bold text-lg">Back</span>
+  </div>
+):(<div  onClick={() => setPage(page - 1)} className="inline-flex items-center cursor-pointer border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50">
+    <ArrowLeft />
+    <span className="ml-1 font-bold text-lg">Back</span>
+  </div>)}
+
+          <div onClick={()=>setPage(page + 1)}  className="inline-flex cursor-pointer items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50">
             <span className="mr-1 font-bold text-lg">Next</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-          </Link>
+            <ArrowRight/>
+          </div>
         </div>
         <Footer />
       </div>
