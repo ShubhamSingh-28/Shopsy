@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 
 
-function page() {
+function Add() {
 
   const[productData, setProductData] = useState({
     product_name:'',
@@ -87,4 +87,4 @@ function page() {
   )
 }
 
-export default page
+export default Add
