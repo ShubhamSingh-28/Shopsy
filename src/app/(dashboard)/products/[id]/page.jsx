@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchProductsById } from '@/app/redux/productSlice';
 import { addToCart } from '@/app/redux/cartSlice';
-export default function page({params}) {
+export default function Products({params}) {
     const {id} = params
     const [data, setData] = useState([]);
   const dispatch = useDispatch();
