@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 
-export default function page() {
+export default function Main() {
 
   return (
     <div className="flex justify-center items-center gap-3 my-8">
