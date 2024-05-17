@@ -13,7 +13,7 @@ import Link from "next/link";
 
 
 
-export default function Cart() {
+export default function CartPage() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 //console.log(cart);
