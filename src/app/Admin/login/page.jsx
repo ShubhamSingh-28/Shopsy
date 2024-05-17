@@ -5,7 +5,7 @@ import { useState } from "react";
 //import  { useForm } from"react-hook-form";
 
 
-function page() {
+function Login() {
   const router =useRouter();
     const[registrationData, setRegistrationData] = useState({
         email: '',
@@ -66,4 +66,4 @@ function page() {
   )
 }
 
-export default page
+export default Login
