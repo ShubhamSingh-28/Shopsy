@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react";
 
 
-function page() {
+function Register() {
   const router = useRouter();
   const[registrationData, setRegistrationData] = useState({
       name:'',
@@ -70,4 +70,4 @@ function page() {
   )
 }
 
-export default page
+export default Register
